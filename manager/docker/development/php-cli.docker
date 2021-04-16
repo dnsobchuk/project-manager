@@ -1,6 +1,6 @@
 FROM php:8.0.3-cli
 
-RUN apt-get update && apt-get install -y git && pecl install xdebug-3.0.3 && docker-php-ext-enable xdebug
+RUN apt-get update && apt-get install -y git unzip && pecl install xdebug-3.0.3 && docker-php-ext-enable xdebug
 
 COPY ./php/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
