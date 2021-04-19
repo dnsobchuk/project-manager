@@ -16,6 +16,8 @@ services:
       dockerfile: php-fpm.docker
     volumes:
       - ./manager:/app
+    depends_on:
+      - manager-postgres
   manager-php-cli:
     build:
       context: ./manager/docker/development
@@ -23,6 +25,8 @@ services:
     volumes:
       - ./manager:/app
       - composer:/root/.composer/cache
+    depends_on:
+      - manager-postgres
   manager-postgres:
     image: postgres:13.2-alpine
     volumes:

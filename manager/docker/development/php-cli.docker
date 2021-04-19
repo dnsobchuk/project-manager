@@ -1,6 +1,9 @@
 FROM php:8.0.3-cli
 
-RUN apt-get update && apt-get install -y git unzip && pecl install xdebug-3.0.3 && docker-php-ext-enable xdebug
+RUN apt-get update && apt-get install -y libpq-dev unzip \
+    && pecl install xdebug-3.0.3 && docker-php-ext-enable xdebug \
+    && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
+    && docker-php-ext-install pdo_pgsql                                                                                                       && docker-php-ext-install pdo_pgsql
 
 COPY ./php/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
